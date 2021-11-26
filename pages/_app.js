@@ -1,11 +1,11 @@
 import '../styles/globals.css'
-import Layout from "../layout/mainLayout";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
+    <div className="dark:bg-gray-800">
       <Component {...pageProps} />
-    </Layout>
+    </div>
+
   )
 }
 
