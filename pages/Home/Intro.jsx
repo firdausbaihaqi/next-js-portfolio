@@ -23,7 +23,7 @@ function Intro({ showIntro, setShowIntro }) {
   };
 
   return (
-    <div className="fixed inset-0 w-screen h-screen dark:bg-gray-800">
+    <div className="fixed inset-0 z-50 w-screen h-screen dark:bg-gray-800">
       <div className=" flex flex-col items-center w-full lg:justify-between lg:items-start lg:flex-row md:px-20 sm:mt-[10%]">
         {/* left text */}
         <div className="flex flex-col items-center md:items-start ">
@@ -37,7 +37,8 @@ function Intro({ showIntro, setShowIntro }) {
         {/* right text */}
         <div className="flex flex-col items-center justify-center mt-10 lg:mt-5 md:items-end ">
           <div className="p-4 text-base border-4 border-gray-700 border-dashed cursor-pointer md:p-6 md:text-2xl dark:border-gray-100">
-            A showcase of my working history
+            With the beauty of design, and the art of programming
+            {/* A showcase of my working history */}
             {/* Loading <Loader></Loader> */}
           </div>
           <div className="flex flex-col items-center justify-center w-full">

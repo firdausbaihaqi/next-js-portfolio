@@ -1,58 +1,57 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-const transition = (delay) => {
-  return {
-    repeat: Infinity,
-    repeatType: "mirror",
-    duration: 0.5,
-    type: "spring",
-    mass: 0.4,
-    damping: 8,
-    delay: delay,
-  };
+const containerVariant = {
+  animate: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
 };
 
 const loaderVariant = {
-  animationOne: {
-    y: [-20, -30],
-    transition: transition(0),
+  initial: {
+    y: 0,
   },
-  animationTwo: {
-    y: [-20, -30],
-    transition: transition(0.3),
+  animate: {
+    y: -10,
   },
-  animationThree: {
-    y: [-20, -30],
-    transition: transition(0.5),
-  },
+};
+
+const loaderTransition = {
+  repeat: Infinity,
+  repeatType: "mirror",
+  duration: 0.5,
 };
 
 function Loader() {
   return (
-    <div
-      style={{
-        height: "20px",
-        display: "flex",
-        width: "100%",
-        justifyContent: "center",
-      }}
-    >
+    <AnimatePresence>
       <motion.div
-        className="loader"
-        variants={loaderVariant}
-        animate="animationOne"
-      ></motion.div>
-      <motion.div
-        className="loader"
-        variants={loaderVariant}
-        animate="animationTwo"
-      ></motion.div>
-      <motion.div
-        className="loader"
-        variants={loaderVariant}
-        animate="animationThree"
-      ></motion.div>
-    </div>
+        variants={containerVariant}
+        initial="initial"
+        animate="animate"
+        style={{
+          height: "20px",
+          display: "flex",
+        }}
+      >
+        <motion.div
+          className="loader"
+          variants={loaderVariant}
+          transition={loaderTransition}
+        ></motion.div>
+        <motion.div
+          className="loader"
+          variants={loaderVariant}
+          transition={loaderTransition}
+        ></motion.div>
+        <motion.div
+          className="loader"
+          variants={loaderVariant}
+          transition={loaderTransition}
+        ></motion.div>
+      </motion.div>
+    </AnimatePresence>
   );
 }
 

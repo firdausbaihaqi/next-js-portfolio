@@ -2,19 +2,25 @@ import Link from "next/link";
 import { useEffect, useState, useCallback } from "react";
 import Toggle from "../components/UI/Toggle";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
 
 function Navbar() {
+  const router = useRouter();
+
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [isTop, setIsTop] = useState(true);
 
-  useEffect(() => {
-    window.onscroll = () =>
-      document.documentElement.scrollTop <= 100
-        ? setIsTop(true)
-        : setIsTop(false);
-    return () => (window.onscroll = null);
-  });
+  // show on mounted if currently not in landing page
+  const [showName, setShowName] = useState(router.asPath == "/" ? true : false);
+
+  // hide name on scroll down, show on scroll up
+  // useEffect(() => {
+  //   window.onscroll = () =>
+  //     document.documentElement.scrollTop <= 100
+  //       ? setShowName(true)
+  //       : setShowName(false);
+  //   return () => (window.onscroll = null);
+  // });
 
   const controlDirection = useCallback(() => {
     const currentScrollPos = window.pageYOffset;
@@ -24,31 +30,34 @@ function Navbar() {
 
   useEffect(() => {
     window.addEventListener("scroll", controlDirection);
-    visible && console.log(visible);
+    // visible && console.log(visible);
     return () => {
       window.removeEventListener("scroll", controlDirection);
     };
   }, [controlDirection]);
 
   return (
-    <nav
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ delay: 2 }}
       className={
-        "sticky mx-auto text-gray-800 dark:text-white 2xl:max-w-6xl duration-300 transition-all  z-50  dark:bg-opacity-50 bg-opacity-90" +
+        "sticky w-full ease-in-out z-[9999] transition-all duration-500 " +
         (visible ? " top-0" : " -top-28")
       }
     >
-      <div className="container flex-wrap py-8 mx-auto md:flex md:justify-between md:items-center">
+      <div className=" flex-wrap py-8 w-full text-gray-800 bg-gray-100 md:flex md:justify-between md:items-center dark:bg-zinc-900 dark:text-white dark:bg-opacity-90 bg-opacity-90 ">
         {/* content */}
-        <div className="flex items-center justify-between w-full text-xs md:text-base">
+        <div className="flex items-center mx-auto lg:max-w-5xl justify-between w-full text-xs md:text-base">
           <div
             className={
               "text-lg md:text-2xl hover:text-gray-700 dark:hover:text-gray-300 duration-300 transition-all" +
-              (!isTop && " -translate-y-32")
+              (showName && " -translate-y-32")
             }
           >
             <Link href="/">
               <a>
-                <span className="mr-2 border-t-4 border-blue-600 dark:border-blue-500">
+                <span className="mr-2 border-blue-600 dark:border-blue-500">
                   Firdaus
                 </span>
                 Baihaqi
@@ -56,13 +65,37 @@ function Navbar() {
             </Link>
           </div>
 
-          <div className="">
-            <Toggle />
+          <div className="flex gap-5">
+            {/* <button className="mr-4">
+              <motion.svg
+                width="50"
+                height="50"
+                className="absolute z-10 -translate-x-[15px] -translate-y-[9px]"
+              >
+                <motion.circle
+                  cx="25"
+                  cy="25"
+                  r="20"
+                  stroke="white"
+                  strokeWidth="3"
+                  fill="transparent"
+                  initial={{ pathLength: 0 }}
+                  whileHover={{ pathLength: 1 }}
+                  transition={{ duration: 0.5 }}
+                />
+              </motion.svg>
+              <i className="text-2xl fa fa-bars"></i>
+            </button> */}
+
+            {/* items */}
+            <div className="">
+              <Toggle />
+            </div>
           </div>
         </div>
         {/* end of content */}
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 
