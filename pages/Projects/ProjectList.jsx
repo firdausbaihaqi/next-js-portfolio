@@ -21,7 +21,7 @@ function ProjectList({ projects }) {
                   )`,
                 }}
               >
-                <div className="w-full h-full lg:text-zinc-700 text-zinc-50 lg:dark:text-zinc-200 bg-black lg:bg-transparent bg-opacity-60 p-8 sm:p-10 lg:p-0 rounded-lg">
+                <div className="w-full h-full p-8 bg-black rounded-lg lg:text-zinc-700 text-zinc-50 lg:dark:text-zinc-200 lg:bg-transparent bg-opacity-60 sm:p-10 lg:p-0">
                   <h1 className="mb-4 text-4xl font-bold leading-none tracking-tighter md:text-7xl lg:text-5xl">
                     {project.Title}
                   </h1>
@@ -29,9 +29,9 @@ function ProjectList({ projects }) {
                     {project.ShortDescription}
                   </div>
                   <div className="mb-4 text-base leading-relaxed text-left text-gray-300 lg:text-gray-500 lg:dark:text-gray-400">
-                    <p className="line-clamp-3 mb-2">{project.Description}</p>
-                    <Link href="#">
-                      <button className="underline underline-offset-4 hover:text-zinc-100 lg:hover:text-zinc-900 lg:dark:hover:text-zinc-100 duration-100 transition-all hover:scale-105">
+                    <p className="mb-2 line-clamp-3">{project.Description}</p>
+                    <Link href={`projects/detail/${project.Slug}`}>
+                      <button className="link">
                         Read more
                       </button>
                     </Link>
@@ -43,11 +43,11 @@ function ProjectList({ projects }) {
                   </div> */}
 
                   {/* links */}
-                  <div className="flex -ml-1 items-center">
+                  <div className="flex items-center -ml-1">
                     <button className="social-button !text-[32px]">
                       <i className="w-10 fab fa-github-square"></i>
                     </button>
-                    <button className="social-button mb-1">
+                    <button className="mb-1 social-button">
                       <i className="w-10 fas fa-external-link-alt"></i>
                     </button>
                   </div>

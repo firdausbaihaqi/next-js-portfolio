@@ -13,13 +13,17 @@ body {
   font-family: "Inter";
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   color: inherit;
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+.link {
+  @apply underline transition-all duration-100 underline-offset-4 hover:text-zinc-100 lg:hover:text-zinc-900 lg:dark:hover:text-zinc-100 hover:scale-105;
 }
 
 .loader {
