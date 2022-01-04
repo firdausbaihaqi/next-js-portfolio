@@ -62,10 +62,10 @@ function Bio() {
         </div>
 
         <div>
-          <Link href="/Projects">
-            <button className="mt-5 text-xl text-gray-500 hover:underline dark:text-gray-400 dark:hover:text-gray-300 underline-offset-8 group duration-300">
+          <Link href="/projects">
+            <button className="mt-5 text-xl text-gray-500 duration-300 hover:underline dark:text-gray-400 dark:hover:text-gray-300 underline-offset-8 group">
               My Projects{" "}
-              <i className="fas fa-arrow-right text-lg group-hover:ml-2 duration-300"></i>
+              <i className="text-lg duration-300 fas fa-arrow-right group-hover:ml-2"></i>
             </button>
           </Link>
         </div>

@@ -13,12 +13,12 @@ function Intro2({ setShowIntro }) {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
-      setShow(false);
-    }, 2000);
+    // setTimeout(() => {
+    //   setShow(false);
+    // }, 2000);
     setTimeout(() => {
       setShowIntro(false);
-    }, 5000);
+    }, 2500);
   }, []);
 
   const containerVariant = {

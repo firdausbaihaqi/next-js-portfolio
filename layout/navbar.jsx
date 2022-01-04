@@ -4,7 +4,7 @@ import Toggle from "../components/UI/Toggle";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
-function Navbar() {
+function Navbar({ delayNavbar }) {
   const router = useRouter();
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -40,15 +40,15 @@ function Navbar() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ delay: 2 }}
+      transition={{ delay: delayNavbar ? 2 : 0.2 }}
       className={
         "sticky w-full ease-in-out z-[9999] transition-all duration-500 " +
         (visible ? " top-0" : " -top-28")
       }
     >
-      <div className=" flex-wrap py-8 w-full text-gray-800 bg-gray-100 md:flex md:justify-between md:items-center dark:bg-zinc-900 dark:text-white dark:bg-opacity-90 bg-opacity-90 ">
+      <div className="flex-wrap w-full py-8 text-gray-800 bg-gray-100 md:flex md:justify-between md:items-center dark:bg-zinc-900 dark:text-white dark:bg-opacity-90 bg-opacity-90">
         {/* content */}
-        <div className="flex items-center mx-auto lg:max-w-5xl justify-between w-full text-xs md:text-base">
+        <div className="flex items-center justify-between w-full mx-auto text-xs lg:max-w-5xl md:text-base">
           <div
             className={
               "text-lg md:text-2xl hover:text-gray-700 dark:hover:text-gray-300 duration-300 transition-all" +
