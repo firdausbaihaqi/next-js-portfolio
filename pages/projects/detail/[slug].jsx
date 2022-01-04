@@ -1,11 +1,12 @@
 import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
+import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import MainLayout from "../../../layout/mainLayout";
 import { ApiProject } from "../../../helper/strapi";
-import { AnimatePresence, motion } from "framer-motion";
-import ReactMarkdown from "react-markdown";
+import Loader from "../../../components/UI/Loader";
 
 const projectsVariant = {
   initial: { opacity: 0, x: -20 },
@@ -20,58 +21,68 @@ function Detail() {
   const { slug } = router.query;
 
   useEffect(async () => {
-    const res = await axios
-      .get(ApiProject + slug)
-      .then((res) => {
-        console.log(res.data);
-        return res;
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log("error response : ", error.response.status);
-          // console.log("error response : ", error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in node.js
-          console.log("error request : ", error.request);
+    if (router.isReady) {
+      const res = await axios
+        .get(ApiProject + slug)
+        .then((res) => {
+          // console.log(res.data);
+          return res;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("catch error response : ", error.response.status);
+            // console.log("error response : ", error.response.headers);
+          } else if (error.request) {
+            // The request was made but no response was received
+            // `error.request` is an instance of XMLHttpRequest in the browser and an instance of http.ClientRequest in node.js
+            console.log("error request : ", error.request);
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.log("Error", error.message);
+          }
+
+          return error;
+        });
+
+      if (res.status == 200) {
+        setProject(res.data);
+      } else if (res.response) {
+        // if project not found set project with dummy data
+        if (res.response.status == 404) {
+          const emptyProject = {
+            id: null,
+            Title: "Project not found",
+            Description:
+              "Something went wrong, please select another project from 'My Projects' page",
+            Slug: "",
+            created_at: "",
+            updated_at: "",
+            ShortDescription: "I'm sorry, it's on me :(",
+            Images: [],
+            technologies: [],
+          };
+          setProject(emptyProject);
         } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
+          alert("error with status : ", res.response.status);
         }
-
-        return error;
-      });
-
-    if (res?.status == 200) {
-      setProject(res.data);
-    } else if (res?.response) {
-      // if project not found set project with dummy data
-      if (res.response.status == 404) {
-        const emptyProject = {
-          id: null,
-          Title: "Project not found",
-          Description:
-            "Something went wrong, please select another project from 'My Projects' page",
-          Slug: "",
-          created_at: "",
-          updated_at: "",
-          ShortDescription: "I'm sorry, it's on me :(",
-          Images: [],
-          technologies: [],
-        };
-        setProject(emptyProject);
       } else {
-        alert("error with status : ", res.response.status);
+        alert(
+          "Sometimes we forget to connect our device to the internet :), please make sure you have an internet connection then reload the page"
+        );
       }
-    } else {
-      alert(
-        "Sometimes we forget to connect our device to the internet :), please make sure you have an internet connection then reload the page"
-      );
     }
   }, [slug]);
 
   return (
     <MainLayout delayNavbar={false}>
+      <AnimatePresence>
+        {!project && (
+          <motion.div className="mt-16" variants={projectsVariant}>
+            <Loader />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      
       <div className="max-w-xl min-h-screen mx-auto mt-2 2xl:max-w-2xl">
         {project && (
           <motion.div className="w-full mt-16" variants={projectsVariant}>
@@ -104,7 +115,10 @@ function Detail() {
                 <div className="flex gap-2 text-base">
                   <div>Technologies :</div>
                   {project.technologies.map((tech) => (
-                    <button className="!no-underline italic link after:content-[','] last:after:content-['']">
+                    <button
+                      key={tech.id}
+                      className="!no-underline italic link after:content-[','] last:after:content-['']"
+                    >
                       {tech.Name}
                     </button>
                   ))}
