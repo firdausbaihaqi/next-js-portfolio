@@ -3,11 +3,10 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
 import MainLayout from "../../layout/mainLayout";
-import { ApiProjects, ApiTechs, ApiProjectsByTechs } from "../../helper/strapi";
-import Loader from "../../components/UI/Loader";
+import { ApiTechs } from "../../helper/strapi";
 import ProjectList from "./ProjectList";
+import Loader from "../../components/UI/Loader";
 
 const projectsVariant = {
   initial: { opacity: 0, x: -20 },
@@ -18,7 +17,6 @@ const projectsVariant = {
 function Projects() {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [projects, setProjects] = useState([]);
 
   // get categories on mounted
   useEffect(() => {
@@ -28,24 +26,6 @@ function Projects() {
       }, 1500)
     );
   }, []);
-
-  // on selectedCategory change get projects based on new category
-  useEffect(() => {
-    setProjects([]); //set projects empty so the user can see the loader
-    // setTimeout(() => {
-    if (selectedCategory !== "All") {
-      axios.get(ApiProjectsByTechs(selectedCategory)).then((response) => {
-        // console.log(response.data);
-        setProjects(response.data);
-      });
-    } else {
-      axios.get(ApiProjects).then((response) => {
-        // console.log(response.data);
-        setProjects(response.data);
-      });
-    }
-    // }, 1500);
-  }, [selectedCategory]);
 
   const handleSelectCategory = (categorySlug) => {
     setSelectedCategory(categorySlug);
@@ -57,7 +37,8 @@ function Projects() {
         <div className="w-full md:w-2/3">
           <h1 className="flex text-5xl font-bold md:text-7xl">Projects.</h1>
           <p className="w-5/6 mt-5 text-xl text-gray-500 md:text-2xl dark:text-gray-400">
-            Selection of projects i&apos;ve been working on as a Frontend Developer.
+            Selection of projects i&apos;ve been working on as a Frontend
+            Developer.
           </p>
         </div>
 
@@ -103,21 +84,7 @@ function Projects() {
               })}
             </motion.div>
 
-            <AnimatePresence>
-              {projects.length == 0 && (
-                <motion.div className="mt-20" variants={projectsVariant}>
-                  <Loader />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            <AnimatePresence>
-              {projects.length > 0 && (
-                <motion.div variants={projectsVariant}>
-                  <ProjectList projects={projects} />
-                </motion.div>
-              )}
-            </AnimatePresence>
+            <ProjectList selectedCategory={selectedCategory} />
           </div>
         )}
       </div>

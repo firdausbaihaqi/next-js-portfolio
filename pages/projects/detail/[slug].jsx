@@ -91,7 +91,7 @@ function Detail() {
                 <button className="!no-underline link ">Home</button>
               </Link>
               <div>/</div>
-              <Link href="/projects">
+              <Link href="/Projects">
                 <button className="!no-underline link">My Projects</button>
               </Link>
               <div>/</div>
