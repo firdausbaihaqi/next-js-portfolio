@@ -16,7 +16,7 @@ const waveVariant = {
 
 function Bio() {
   return (
-    <div className="relative z-10 flex min-h-[80vh] mt-20  -translate-y-20">
+    <div className="relative z-10 flex min-h-[80vh] mt-20 sm:mt-[10%] -translate-y-20">
       <div className="w-full mt-auto mb-auto -translate-y-10 md:w-2/3">
         {/* greeting */}
         <div className="text-5xl font-bold tracking-tight md:flex md:text-7xl">
@@ -50,15 +50,21 @@ function Bio() {
 
         {/* buttons */}
         <div className="flex mt-2 -ml-1">
-          <button className="social-button">
-            <i className="w-10 fab fa-github-square"></i>
-          </button>
-          <button className="social-button">
-            <i className="w-10 fab fa-linkedin"></i>
-          </button>
-          <button className="social-button">
-            <i className="w-10 fab fa-twitter"></i>
-          </button>
+          <a href="https://github.com/firdausbaihaqi" target="_blank">
+            <button className="social-button">
+              <i className="w-10 fab fa-github-square"></i>
+            </button>
+          </a>
+          <a href="https://linkedin.com/in/mifbaihaqi" target="_blank">
+            <button className="social-button">
+              <i className="w-10 fab fa-linkedin"></i>
+            </button>
+          </a>
+          <a href="https://twitter.com/randomdudes00" target="_blank">
+            <button className="social-button">
+              <i className="w-10 fab fa-twitter"></i>
+            </button>
+          </a>
         </div>
 
         <div>

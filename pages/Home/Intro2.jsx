@@ -16,6 +16,7 @@ function Intro2({ setShowIntro }) {
     // setTimeout(() => {
     //   setShow(false);
     // }, 2000);
+    window.scrollTo(0, 0);
     setTimeout(() => {
       setShowIntro(false);
     }, 2500);
@@ -54,8 +55,8 @@ function Intro2({ setShowIntro }) {
   };
 
   return (
-    <div className="inset-0 z-50 h-screen ">
-      <div className=" flex flex-col items-center w-full lg:justify-between lg:items-start lg:flex-row 2xl:px-5 sm:mt-[10%]">
+    <div className="inset-0 z-50 min-h-[80vh]">
+      <div className="mt-[30%] flex flex-col items-center w-full h-full lg:justify-between lg:items-start lg:flex-row 2xl:px-5 sm:mt-[10%]">
         {/* left text */}
         {/* With the beauty of design, and the art of programming */}
         <motion.div
@@ -84,10 +85,10 @@ function Intro2({ setShowIntro }) {
           </AnimatePresence> */}
           <motion.div
             variants={childrenVariant}
-            className="flex flex-col items-center md:items-start"
+            className="flex flex-col items-start"
           >
             <div className="text-5xl font-medium md:text-8xl">Portfolio.</div>
-            <p className="hidden ml-2 text-xl md:block lg:ml-2">
+            <p className="text-xl md:block lg:ml-2">
               Muhammad Ihya Firdaus Baihaqi
             </p>
           </motion.div>

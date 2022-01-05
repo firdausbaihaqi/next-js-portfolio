@@ -3,7 +3,7 @@ import { Switch } from "@headlessui/react";
 import { initTheme, toggleTheme, isDarkTheme } from "../../helper/theme";
 import { motion } from "framer-motion";
 
-function Toggle() {
+function Toggle({ delayNavbar }) {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
@@ -18,41 +18,81 @@ function Toggle() {
 
   const svgVariant = {
     initial: {
-      opacity: 1,
-      x: 0,
-    },
-    animate: {
       opacity: 0,
       x: 50,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
       transition: {
-        delay: 2,
+        delay: delayNavbar ? 0.2 : 2,
       },
     },
     hover: {
       opacity: 1,
-      x: 0,
+      x: -10,
       transition: { duration: 0.3 },
     },
   };
 
   const svgVariant2 = {
     initial: {
-      opacity: 1,
-      x: 0,
-    },
-    animate: {
       opacity: 0,
       x: -50,
+    },
+    animate: {
+      opacity: 1,
+      x: 0,
       transition: {
-        delay: 2,
+        delay: delayNavbar ? 0.2 : 2,
       },
     },
     hover: {
       opacity: 1,
-      x: 0,
+      x: 10,
       transition: { duration: 0.3 },
     },
   };
+
+  // show icon on hover variants
+
+  // const svgVariant = {
+  //   initial: {
+  //     opacity: 1,
+  //     x: 0,
+  //   },
+  //   animate: {
+  //     opacity: 0,
+  //     x: 50,
+  //     transition: {
+  //       delay: 2,
+  //     },
+  //   },
+  //   hover: {
+  //     opacity: 1,
+  //     x: 0,
+  //     transition: { duration: 0.3 },
+  //   },
+  // };
+
+  // const svgVariant2 = {
+  //   initial: {
+  //     opacity: 1,
+  //     x: 0,
+  //   },
+  //   animate: {
+  //     opacity: 0,
+  //     x: -50,
+  //     transition: {
+  //       delay: 2,
+  //     },
+  //   },
+  //   hover: {
+  //     opacity: 1,
+  //     x: 0,
+  //     transition: { duration: 0.3 },
+  //   },
+  // };
 
   return (
     <motion.div

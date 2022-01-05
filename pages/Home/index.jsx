@@ -55,7 +55,7 @@ function Home() {
         initial="initial"
         animate="animate"
         exit="exit"
-        className="h-screen px-5 mx-auto overflow-hidden lg:max-w-6xl xl:px-20"
+        className="h-screen px-8 mx-auto overflow-hidden lg:max-w-6xl xl:px-20"
       >
         <div className="overflow-hidden tracking-widest duration-300 ">
           <Navbar />

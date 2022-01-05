@@ -9,12 +9,10 @@ function Footer() {
         <div className="flex flex-col items-center justify-center mt-6 md:flex-row">
           <div className="text-sm ">
             Designed & Built by {""}
-            <Link href="/">
-              <a className="hover:underline underline-offset-2">
-                {/* <span className="mr-2 border-t-4 border-blue-600 dark:border-blue-500"></span> */}
-                Firdaus Baihaqi
-              </a>
-            </Link>
+            <a href="https://github.com/firdausbaihaqi" className="hover:underline underline-offset-2">
+              {/* <span className="mr-2 border-t-4 border-blue-600 dark:border-blue-500"></span> */}
+              Firdaus Baihaqi
+            </a>
           </div>
         </div>
       </div>

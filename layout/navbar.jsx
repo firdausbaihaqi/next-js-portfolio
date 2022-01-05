@@ -89,7 +89,7 @@ function Navbar({ delayNavbar }) {
 
             {/* items */}
             <div className="">
-              <Toggle />
+              <Toggle delayNavbar />
             </div>
           </div>
         </div>
