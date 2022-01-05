@@ -106,13 +106,13 @@ function Detail() {
               </div>
               {project?.Images.length > 0 && (
                 <img
-                  src={project.Images[0].formats.medium.url}
+                  src={project.Images[1].formats.medium.url}
                   alt=""
                   className="w-full max-h-[80vh] object-cover rounded-lg dark:brightness-[0.85] duration-300"
                 />
               )}
               {project.technologies.length > 0 && (
-                <div className="flex gap-2 text-base">
+                <div className="flex flex-wrap gap-2 text-base">
                   <div>Technologies :</div>
                   {project.technologies.map((tech) => (
                     <button

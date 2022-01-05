@@ -80,8 +80,8 @@ function ProjectList({ projects }) {
                     className="object-cover object-center mx-auto rounded-lg shadow-xl dark:brightness-90 duration-300 max-h-[300px]"
                     alt="hero"
                     src={
-                      project.Images[0]
-                        ? project.Images[0].formats.small.url
+                      project.Images[1]
+                        ? project.Images[1].formats.small.url
                         : "https://cdn.icon-icons.com/icons2/1378/PNG/512/imagemissing_92832.png"
                     }
                   />
