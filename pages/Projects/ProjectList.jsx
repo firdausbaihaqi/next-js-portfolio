@@ -78,7 +78,10 @@ function ProjectList({ selectedCategory }) {
                                 {project.Description}
                               </ReactMarkdown>
                             </div>
-                            <Link href={`Projects/detail/${project.Slug}`}>
+                            <Link
+                              href={`Projects/detail/${project.Slug}`}
+                              as={`Projects/detail/${project.Slug}`}
+                            >
                               <button className="link">Read more</button>
                             </Link>
                           </div>
