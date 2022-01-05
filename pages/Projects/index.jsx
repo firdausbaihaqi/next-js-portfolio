@@ -34,7 +34,7 @@ function Projects() {
     setProjects([]); //set projects empty so the user can see the loader
     // setTimeout(() => {
     if (selectedCategory !== "All") {
-      axios.get(ApiProjectsByTechs + selectedCategory).then((response) => {
+      axios.get(ApiProjectsByTechs(selectedCategory)).then((response) => {
         // console.log(response.data);
         setProjects(response.data);
       });

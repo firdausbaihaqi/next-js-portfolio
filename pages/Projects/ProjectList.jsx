@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 function ProjectList({ projects }) {
   return (
@@ -15,25 +16,25 @@ function ProjectList({ projects }) {
                   backgroundImage: `url(
                     ${
                       project.Images[0]
-                        ? project.Images[0].url
+                        ? project.Images[0].formats.medium.url
                         : "https://cdn.icon-icons.com/icons2/1378/PNG/512/imagemissing_92832.png"
                     }
                   )`,
                 }}
               >
                 <div className="w-full h-full p-8 bg-black rounded-lg lg:text-zinc-700 text-zinc-50 lg:dark:text-zinc-200 lg:bg-transparent bg-opacity-60 sm:p-10 lg:p-0">
-                  <h1 className="mb-4 text-4xl font-bold leading-none tracking-tighter md:text-7xl lg:text-5xl">
+                  <h1 className="mb-4 text-4xl font-bold leading-none tracking-normal md:text-7xl lg:text-5xl">
                     {project.Title}
                   </h1>
                   <div className="mb-4 text-xs font-bold tracking-widest uppercase">
                     {project.ShortDescription}
                   </div>
                   <div className="mb-4 text-base leading-relaxed text-left text-gray-300 lg:text-gray-500 lg:dark:text-gray-400">
-                    <p className="mb-2 line-clamp-3">{project.Description}</p>
+                    <p className="mb-2 line-clamp-3">
+                      <ReactMarkdown>{project.Description}</ReactMarkdown>
+                    </p>
                     <Link href={`projects/detail/${project.Slug}`}>
-                      <button className="link">
-                        Read more
-                      </button>
+                      <button className="link">Read more</button>
                     </Link>
                   </div>
 
@@ -44,12 +45,29 @@ function ProjectList({ projects }) {
 
                   {/* links */}
                   <div className="flex items-center -ml-1">
-                    <button className="social-button !text-[32px]">
-                      <i className="w-10 fab fa-github-square"></i>
-                    </button>
-                    <button className="mb-1 social-button">
-                      <i className="w-10 fas fa-external-link-alt"></i>
-                    </button>
+                    {project.repository ? (
+                      <Link href={project.repository}>
+                        <button className="social-button !text-[32px]">
+                          <i className="w-10 fab fa-github-square"></i>
+                        </button>
+                      </Link>
+                    ) : (
+                      <button className="social-button-disabled !text-[32px] ">
+                        <i className="w-10 fab fa-github-square"></i>
+                      </button>
+                    )}
+
+                    {project.liveDemo ? (
+                      <Link href={project.liveDemo}>
+                        <button className="mb-1 social-button">
+                          <i className="w-10 fas fa-external-link-alt"></i>
+                        </button>
+                      </Link>
+                    ) : (
+                      <button className="mb-1 social-button-disabled">
+                        <i className="w-10 fas fa-external-link-alt"></i>
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
@@ -63,7 +81,7 @@ function ProjectList({ projects }) {
                     alt="hero"
                     src={
                       project.Images[0]
-                        ? project.Images[0].url
+                        ? project.Images[0].formats.small.url
                         : "https://cdn.icon-icons.com/icons2/1378/PNG/512/imagemissing_92832.png"
                     }
                   />

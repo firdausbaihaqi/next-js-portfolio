@@ -106,7 +106,7 @@ function Detail() {
               </div>
               {project?.Images.length > 0 && (
                 <img
-                  src={project.Images[0].url}
+                  src={project.Images[0].formats.medium.url}
                   alt=""
                   className="w-full max-h-[80vh] object-cover rounded-lg dark:brightness-[0.85] duration-300"
                 />
