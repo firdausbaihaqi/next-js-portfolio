@@ -4,9 +4,9 @@ import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import MainLayout from "../../../layout/mainLayout";
-import { ApiProject } from "../../../helper/strapi";
-import Loader from "../../../components/UI/Loader";
+import MainLayout from "../../layout/mainLayout";
+import { ApiProject } from "../../helper/strapi";
+import Loader from "../../components/UI/Loader";
 
 const projectsVariant = {
   initial: { opacity: 0, x: -20 },
