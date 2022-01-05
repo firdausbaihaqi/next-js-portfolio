@@ -30,7 +30,7 @@ function Toggle({ delayNavbar }) {
     },
     hover: {
       opacity: 1,
-      x: -10,
+      x: 5,
       transition: { duration: 0.3 },
     },
   };
@@ -49,7 +49,7 @@ function Toggle({ delayNavbar }) {
     },
     hover: {
       opacity: 1,
-      x: 10,
+      x: -5,
       transition: { duration: 0.3 },
     },
   };
