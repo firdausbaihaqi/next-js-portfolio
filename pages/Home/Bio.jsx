@@ -20,14 +20,14 @@ function Bio() {
       <div className="w-full mt-auto mb-auto -translate-y-10 md:w-2/3">
         {/* greeting */}
         <div className="text-5xl font-bold tracking-tight md:flex md:text-7xl">
-          Hi, <span className="hidden ml-3 md:inline">I'm</span>
+          Hi, <span className="hidden ml-3 md:inline">I&apos;m</span>
           <motion.div
             className="flex md:ml-3"
             initial="initial"
             animate="animate"
             whileHover="whileHover"
           >
-            <span className="inline mr-3 md:hidden">I'm</span>
+            <span className="inline mr-3 md:hidden">I&apos;m</span>
             <span className="border-b-4 border-gray-300 cursor-pointer dark:border-transparent hover:border-blue-600 dark:hover:border-blue-600">
               Baihaqi!
             </span>
@@ -50,17 +50,29 @@ function Bio() {
 
         {/* buttons */}
         <div className="flex mt-2 -ml-1">
-          <a href="https://github.com/firdausbaihaqi" target="_blank">
+          <a
+            href="https://github.com/firdausbaihaqi"
+            target="_blank"
+            rel="noreferrer"
+          >
             <button className="social-button">
               <i className="w-10 fab fa-github-square"></i>
             </button>
           </a>
-          <a href="https://linkedin.com/in/mifbaihaqi" target="_blank">
+          <a
+            href="https://linkedin.com/in/mifbaihaqi"
+            target="_blank"
+            rel="noreferrer"
+          >
             <button className="social-button">
               <i className="w-10 fab fa-linkedin"></i>
             </button>
           </a>
-          <a href="https://twitter.com/randomdudes00" target="_blank">
+          <a
+            href="https://twitter.com/randomdudes00"
+            target="_blank"
+            rel="noreferrer"
+          >
             <button className="social-button">
               <i className="w-10 fab fa-twitter"></i>
             </button>

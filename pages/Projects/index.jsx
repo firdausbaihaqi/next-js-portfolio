@@ -57,7 +57,7 @@ function Projects() {
         <div className="w-full md:w-2/3">
           <h1 className="flex text-5xl font-bold md:text-7xl">Projects.</h1>
           <p className="w-5/6 mt-5 text-xl text-gray-500 md:text-2xl dark:text-gray-400">
-            Selection of projects i've been working on as a Frontend Developer.
+            Selection of projects i&apos;ve been working on as a Frontend Developer.
           </p>
         </div>
 

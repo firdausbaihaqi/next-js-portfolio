@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Loader from "../UI/Loader";
+import Loader from "../../components/UI/Loader";
 import { motion } from "framer-motion";
 
 function Intro({ showIntro, setShowIntro }) {

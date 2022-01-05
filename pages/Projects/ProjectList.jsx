@@ -46,7 +46,11 @@ function ProjectList({ projects }) {
                   {/* links */}
                   <div className="flex items-center -ml-1">
                     {project.repository ? (
-                      <a href={project.repository} target="_blank">
+                      <a
+                        href={project.repository}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         <button className="social-button !text-[32px]">
                           <i className="w-10 fab fa-github-square"></i>
                         </button>
@@ -58,7 +62,11 @@ function ProjectList({ projects }) {
                     )}
 
                     {project.liveDemo ? (
-                      <a href={project.liveDemo} target="_blank">
+                      <a
+                        href={project.liveDemo}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
                         <button className="mb-1 social-button">
                           <i className="w-10 fas fa-external-link-alt"></i>
                         </button>
