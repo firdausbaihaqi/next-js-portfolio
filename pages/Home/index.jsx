@@ -45,7 +45,7 @@ const bioVariant = {
   },
 };
 
-function Home() {
+function home() {
   const [showIntro, setShowIntro] = useState(true);
 
   return (
@@ -80,4 +80,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default home;
