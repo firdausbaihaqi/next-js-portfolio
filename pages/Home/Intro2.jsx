@@ -55,7 +55,7 @@ function Intro2({ setShowIntro }) {
   };
 
   return (
-    <div className="inset-0 z-50 min-h-[80vh]">
+    <div className="inset-0 z-50">
       <div className="mt-[30%] flex flex-col items-center w-full h-full lg:justify-between lg:items-start lg:flex-row 2xl:px-5 sm:mt-[10%]">
         {/* left text */}
         {/* With the beauty of design, and the art of programming */}

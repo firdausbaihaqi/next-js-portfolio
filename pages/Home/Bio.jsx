@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import Loader from "../../components/UI/Loader";
 import Link from "next/link";
 
 const waveVariant = {
@@ -16,8 +15,8 @@ const waveVariant = {
 
 function Bio() {
   return (
-    <div className="relative z-10 flex min-h-[80vh] mt-20 sm:mt-[10%] -translate-y-20">
-      <div className="w-full mt-auto mb-auto -translate-y-10 md:w-2/3">
+    <div className="relative z-10 flex h-full mt-20 lg:mt-[8%] 2xl:mt-[15%] ">
+      <div className="w-full md:w-2/3">
         {/* greeting */}
         <div className="text-5xl font-bold tracking-tight md:flex md:text-7xl">
           Hi, <span className="hidden ml-3 md:inline">I&apos;m</span>
@@ -80,7 +79,7 @@ function Bio() {
         </div>
 
         <div>
-          <Link href="/Projects">
+          <Link href="/Projects" scroll={false}>
             <button className="mt-5 text-xl text-gray-500 duration-300 hover:underline dark:text-gray-400 dark:hover:text-gray-300 underline-offset-8 group">
               My Projects{" "}
               <i className="text-lg duration-300 fas fa-arrow-right group-hover:ml-2"></i>

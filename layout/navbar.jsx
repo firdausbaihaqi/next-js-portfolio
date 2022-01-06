@@ -4,7 +4,7 @@ import Toggle from "../components/UI/Toggle";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 
-function Navbar({ delayNavbar }) {
+function Navbar() {
   const router = useRouter();
 
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -40,7 +40,7 @@ function Navbar({ delayNavbar }) {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ delay: delayNavbar ? 2 : 0.2 }}
+      transition={{ delay: router.asPath == "/" ? 1 : 0.2 }}
       className={
         "sticky w-full ease-in-out z-[9999] transition-all duration-500 " +
         (visible ? " top-0" : " -top-28")
@@ -52,10 +52,10 @@ function Navbar({ delayNavbar }) {
           <div
             className={
               "text-lg md:text-2xl hover:text-gray-700 dark:hover:text-gray-300 duration-300 transition-all" +
-              (showName && " -translate-y-32")
+              (router.asPath == "/" && " -translate-y-32")
             }
           >
-            <Link href="/">
+            <Link href="/" scroll={false}>
               <a>
                 <span className="mr-2 border-blue-600 dark:border-blue-500">
                   Firdaus
