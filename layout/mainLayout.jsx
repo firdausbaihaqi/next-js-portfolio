@@ -1,32 +1,17 @@
-import Navbar from "./navbar";
 import Footer from "./footer";
 import { motion } from "framer-motion";
 
-export default function MainLayout({
-  children,
-  full = false,
-  delayNavbar = true,
-}) {
+export default function MainLayout({ children, full = false }) {
   const containerVariant = {
-    initial: {
-      opacity: 0,
-      x: -20,
-    },
-    animate: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.5,
-        when: "beforeChildren",
-        staggerChildren: 1.5,
-      },
-    },
+    initial: { opacity: 0, x: -200 },
+    animate: { opacity: 1, x: 0 },
     exit: {
       opacity: 0,
-      y: "-100vh",
+      y: -100,
       transition: {
-        when: "afterChildren",
-        staggerChildren: 1.5,
+        when: "beforeChildren",
+        type: "spring",
+        bounce: 0,
       },
     },
   };
@@ -37,9 +22,9 @@ export default function MainLayout({
       initial="initial"
       animate="animate"
       exit="exit"
+      transition={{ type: "linear" }}
       className={`min-h-screen ${!full && "px-5 xl:px-20"}`}
     >
-      <Navbar delayNavbar={delayNavbar} />
       <section className={`mx-auto ${!full && "lg:max-w-5xl"}`}>
         {children}
       </section>

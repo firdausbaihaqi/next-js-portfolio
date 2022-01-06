@@ -1,12 +1,11 @@
 import axios from "axios";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import MainLayout from "../../layout/mainLayout";
 import { ApiProject } from "../../helper/strapi";
-import Loader from "../../components/UI/Loader";
 
 const projectsVariant = {
   initial: { opacity: 0, x: -20 },
@@ -75,23 +74,15 @@ function Detail() {
 
   return (
     <MainLayout delayNavbar={false}>
-      <AnimatePresence>
-        {!project && (
-          <motion.div className="mt-16" variants={projectsVariant}>
-            <Loader />
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
       <div className="max-w-xl min-h-screen mx-auto mt-2 2xl:max-w-2xl">
         {project && (
           <motion.div className="w-full mt-16" variants={projectsVariant}>
             <div className="flex gap-1 mb-4 text-sm md:gap-2 md:text-base brightness-200 dark:brightness-75">
-              <Link href="/">
+              <Link href="/" scroll={false}>
                 <button className="!no-underline link ">Home</button>
               </Link>
               <div>/</div>
-              <Link href="/Projects">
+              <Link href="/Projects" scroll={false}>
                 <button className="!no-underline link">My Projects</button>
               </Link>
               <div>/</div>

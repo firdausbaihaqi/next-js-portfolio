@@ -81,6 +81,7 @@ function ProjectList({ selectedCategory }) {
                             <Link
                               href={`Project/${project.Slug}`}
                               as={`Project/${project.Slug}`}
+                              scroll={false}
                             >
                               <button className="link">Read more</button>
                             </Link>
