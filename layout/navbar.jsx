@@ -48,7 +48,7 @@ function Navbar() {
     >
       <div className="flex-wrap w-full py-8 text-gray-800 bg-gray-100 md:flex md:justify-between md:items-center dark:bg-zinc-900 dark:text-white dark:bg-opacity-90 bg-opacity-90">
         {/* content */}
-        <div className="flex items-center justify-between w-full mx-auto text-xs lg:max-w-5xl md:text-base">
+        <div className="flex items-center justify-between w-full px-5 mx-auto text-xs md:px-0 lg:max-w-5xl md:text-base">
           <div
             className={
               "text-lg md:text-2xl hover:text-gray-700 dark:hover:text-gray-300 duration-300 transition-all" +
