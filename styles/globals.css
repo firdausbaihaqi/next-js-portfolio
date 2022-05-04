@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap"); */
+
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-VariableFont_slnt,wght.ttf");
+}
 
 html,
 body {
