@@ -1,10 +1,8 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
-import { ApiProjects, ApiProjectsByTechs } from "../../helper/strapi";
-import Loader from "../../components/UI/Loader";
+import Loader from "./UI/Loader";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import Image from "next/image";
 
 const projectsVariant = {
   initial: { opacity: 0, x: -20 },
@@ -12,27 +10,7 @@ const projectsVariant = {
   exit: { opacity: 0, y: "-100vh" },
 };
 
-function ProjectList({ selectedCategory }) {
-  const [projects, setProjects] = useState([]);
-
-  // on selectedCategory change get projects based on new category
-  useEffect(() => {
-    setProjects([]); //set projects empty so the user can see the loader
-    // setTimeout(() => {
-    if (selectedCategory !== "All") {
-      axios.get(ApiProjectsByTechs(selectedCategory)).then((response) => {
-        // console.log(response.data);
-        setProjects(response.data);
-      });
-    } else {
-      axios.get(ApiProjects).then((response) => {
-        // console.log(response.data);
-        setProjects(response.data);
-      });
-    }
-    // }, 1500);
-  }, [selectedCategory]);
-
+function ProjectList({ projects }) {
   return (
     <>
       <AnimatePresence>
@@ -58,8 +36,8 @@ function ProjectList({ selectedCategory }) {
                         style={{
                           backgroundImage: `url(
                     ${
-                      project.Images[0]
-                        ? project.Images[0].formats.medium.url
+                      project.Images.data[0].attributes
+                        ? project.Images.data[0].attributes.formats.medium.url
                         : "https://cdn.icon-icons.com/icons2/1378/PNG/512/imagemissing_92832.png"
                     }
                   )`,
@@ -79,8 +57,8 @@ function ProjectList({ selectedCategory }) {
                               </ReactMarkdown>
                             </div>
                             <Link
-                              href={`Project/${project.Slug}`}
-                              as={`Project/${project.Slug}`}
+                              href={`Project/${project.id}`}
+                              as={`Project/${project.id}`}
                               scroll={false}
                             >
                               <button className="link">Read more</button>
@@ -132,13 +110,14 @@ function ProjectList({ selectedCategory }) {
 
                       {/* right side */}
                       <div className="hidden w-1/2 mt-12 lg:inline lg:max-w-lg rounded-xl xl:mt-0">
-                        <div className="relative w-full max-w-lg">
-                          <img
-                            className="object-cover object-center mx-auto rounded-lg shadow-xl dark:brightness-90 duration-300 max-h-[300px]"
+                        <div className="relative w-full max-w-lg h-[300px] object-cover object-center mx-auto duration-300 rounded-lg overflow-hidden shadow-xl dark:brightness-90">
+                          <Image
                             alt="hero"
+                            layout="fill"
                             src={
-                              project.Images[1]
-                                ? project.Images[1].formats.small.url
+                              project.Images.data[1].attributes
+                                ? project.Images.data[1].attributes.formats
+                                    .small.url
                                 : "https://cdn.icon-icons.com/icons2/1378/PNG/512/imagemissing_92832.png"
                             }
                           />

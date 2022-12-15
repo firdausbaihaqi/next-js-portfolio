@@ -1,11 +1,9 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MainLayout from "../../layout/mainLayout";
-import { ApiTechs } from "../../helper/strapi";
-import ProjectList from "./ProjectList";
+import { ApiProjects, ApiTechs } from "../../helper/strapi";
+import ProjectList from "../../components/ProjectList";
 import Loader from "../../components/UI/Loader";
 
 const projectsVariant = {
@@ -14,18 +12,25 @@ const projectsVariant = {
   exit: { opacity: 0, y: "-100vh" },
 };
 
-function Projects() {
+function Projects({ categoriesProps, projectsProps }) {
   const [categories, setCategories] = useState([]);
+  const [projects, setProjects] = useState([]);
+
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // get categories on mounted
   useEffect(() => {
-    axios.get(ApiTechs).then((response) =>
-      setTimeout(() => {
-        setCategories(response.data);
-      }, 1500)
-    );
+    setCategories(categoriesProps);
+    setProjects(projectsProps);
   }, []);
+
+  useEffect(() => {
+    if (selectedCategory === "All") return setProjects(projectsProps);
+
+    const filteredProjects = projectsProps.filter((p) => {
+      return p.technologies.data.some((t) => t.attributes.Slug === selectedCategory);
+    });
+    setProjects(filteredProjects);
+  }, [selectedCategory]);
 
   const handleSelectCategory = (categorySlug) => {
     setSelectedCategory(categorySlug);
@@ -66,7 +71,7 @@ function Projects() {
 
               {categories.map((category) => {
                 return (
-                  category.projects.length > 0 && (
+                  category.projects.data.length > 0 && (
                     <button
                       onClick={() => handleSelectCategory(category.Slug)}
                       type="button"
@@ -84,12 +89,50 @@ function Projects() {
               })}
             </motion.div>
 
-            <ProjectList selectedCategory={selectedCategory} />
+            <ProjectList projects={projects} />
           </div>
         )}
       </div>
     </MainLayout>
   );
+}
+
+export async function getStaticProps() {
+  const categoriesProps = await axios
+    .get(ApiTechs)
+    .then((response) => response.data.data)
+    .then((categories) => {
+      const transformedCategories = categories.map((c) => {
+        return {
+          id: c.id,
+          ...c.attributes,
+        };
+      });
+
+      return transformedCategories;
+    });
+
+  const projectsProps = await axios
+    .get(ApiProjects)
+    .then((response) => response.data.data)
+    .then((projects) => {
+      // console.log(categories);
+      const transformedProjects = projects.map((c) => {
+        return {
+          id: c.id,
+          ...c.attributes,
+        };
+      });
+
+      return transformedProjects;
+    });
+
+  return {
+    props: {
+      categoriesProps,
+      projectsProps,
+    },
+  };
 }
 
 export default Projects;
